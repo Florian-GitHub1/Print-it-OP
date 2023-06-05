@@ -37,7 +37,7 @@ bannerImg.addEventListener('click', () => {
 
 
 
-function genererDots(slides) {
+function genererDots() {
 	for (let i = 0; i < slides.length; i++) {
 
 		 const dotsElement = document.createElement("div");
@@ -45,7 +45,6 @@ function genererDots(slides) {
 
 		 document.querySelector(".dots").appendChild(dotsElement);
 	}
-
   }
 
-  genererDots(slides);
+  genererDots();
