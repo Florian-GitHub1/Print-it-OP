@@ -19,32 +19,53 @@ const slides = [
 
 
 
-let arrow_left = document.querySelector('.arrow_left');
-let arrow_right = document.querySelector('.arrow_right');
-let bannerImg = document.querySelector('.banner-img');
+const arrow_left = document.querySelector('.arrow_left');
+const arrow_right = document.querySelector('.arrow_right');
+const bannerImg = document.querySelector('.banner-img');
+const bannerText = banner.querySelector("p");
+const dots = document.querySelectorAll(".dot");
 
-arrow_left.addEventListener('click', () => {
-	console.log('click gauche')
-});
-
-arrow_right.addEventListener('click', () => {
-	console.log('click droit')
-});
-
-bannerImg.addEventListener('click', () => {
-	console.log('img')
-});
+let currentSlide = 0;
 
 
 
 function genererDots() {
-	for (let i = 0; i < slides.length; i++) {
-
-		 const dotsElement = document.createElement("div");
-		 dotsElement.classList.add('dot');
-
-		 document.querySelector(".dots").appendChild(dotsElement);
+	for(let i = 0; i < slides.length; i++){
+		const dotsElement = document.createElement("div");
+		dotsElement.classList.add('dot');
+		document.querySelector(".dots").appendChild(dotsElement);
 	}
-  }
+};
 
-  genererDots();
+genererDots();
+
+
+ function updateActiveDot() {
+ 	dots.forEach((dot, index) => {
+ 		dots.classList.remove("dot_selected");
+ 		if (index === currentSlide) {
+ 			dot.classList.add("dot_selected");
+ 		}
+ 	});
+ }
+
+ updateActiveDot();
+
+
+ function showNextSlide() {
+ 	currentSlide = (currentSlide + 1) % slides.length; 
+ 	bannerImg.src = "./assets/images/slideshow/" + slides[currentSlide].image;
+ 	bannerText.innerHTML = slides[currentSlide].tagLine;
+ 	updateActiveDot();
+ }
+ function showPreviousSlide() {
+ 	currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+ 	bannerImg.src = "./assets/images/slideshow/" + slides[currentSlide].image;
+ 	bannerText.innerHTML = slides[currentSlide].tagLine;
+ 	updateActiveDot();
+ }
+
+
+arrow_left.addEventListener('click', showPreviousSlide)
+arrow_right.addEventListener('click', showNextSlide)
+
