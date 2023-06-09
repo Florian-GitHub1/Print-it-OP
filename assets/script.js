@@ -29,27 +29,41 @@ let currentSlide = 0;
 
 
 
-function genererDots() {
-	for(let i = 0; i < slides.length; i++){
+function genererDots(id, active = false) {
+
 		const dotsElement = document.createElement("div");
+
+		dotsElement.setAttribute("data-slide", id);
+
 		dotsElement.classList.add('dot');
+
+
+		if (active) dotsElement.classList.add("dot_selected");
+
 		document.querySelector(".dots").appendChild(dotsElement);
-	}
+
 };
 
-genererDots();
+slides.forEach(genererDots);
 
-
+const dotEls = Array.from(dots);
  function updateActiveDot() {
- 	dots.forEach((dot, index) => {
- 		dots.classList.remove("dot_selected");
- 		if (index === currentSlide) {
- 			dot.classList.add("dot_selected");
- 		}
- 	});
+	
+	dotEls.forEach((dot) => {
+
+		if (dot.getAttribute("data-slide") == this.slideIdActive) {
+  
+		  dot.classList.add("dot_selected");
+  
+		} else {
+  
+		  dot.classList.remove("dot_selected");
+  
+		}
+  
+	  });
  }
 
- updateActiveDot();
 
 
  function showNextSlide() {
