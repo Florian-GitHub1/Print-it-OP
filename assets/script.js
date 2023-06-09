@@ -46,10 +46,10 @@ function genererDots(id, active = false) {
 
 slides.forEach(genererDots);
 
-const dotEls = Array.from(dots);
+ 
  function updateActiveDot() {
 	
-	dotEls.forEach((dot) => {
+	dots.forEach((dot) => {
 
 		if (dot.getAttribute("data-slide") == this.slideIdActive) {
   
