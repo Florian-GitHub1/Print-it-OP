@@ -25,6 +25,7 @@ const bannerImg = document.querySelector('.banner-img');
 const bannerText = banner.querySelector("p");
 const dots = document.querySelectorAll(".dot");
 
+
 let currentSlide = 0;
 
 
@@ -44,17 +45,14 @@ function genererDots(id, active = false) {
 slides.forEach(genererDots);
 
 
- function updateActiveDot(){
-	dotElem.forEach((dot) => {
-		console.log("mdr");
-		if (dot.getAttribute("data-slide") == currentSlide) {
-			
-		  dot.classList.add("dot_selected");
+  function updateActiveDot(){	
+		if (dots.getAttribute("data-slide") == currentSlide++) {
+			console.log("fonctionne")
+		  dots.classList.add("dot_selected");
 		} else {
-		  dot.classList.remove("dot_selected");
+		  dots.classList.remove("dot_selected");
 		}
-	});
- }
+  }
 
 
 
