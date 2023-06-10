@@ -30,38 +30,30 @@ let currentSlide = 0;
 
 
 function genererDots(id, active = false) {
-
 		const dotsElement = document.createElement("div");
 
 		dotsElement.setAttribute("data-slide", id);
 
 		dotsElement.classList.add('dot');
+		dotsElement.classList.add('dot_selected');
 
-
-		if (active) dotsElement.classList.add("dot_selected");
-
+		if (active) dotsElement.classList.remove("dot_selected");
 		document.querySelector(".dots").appendChild(dotsElement);
-
 };
 
 slides.forEach(genererDots);
 
- 
- function updateActiveDot() {
-	
-	dots.forEach((dot) => {
 
-		if (dot.getAttribute("data-slide") == this.slideIdActive) {
-  
+ function updateActiveDot(){
+	dotElem.forEach((dot) => {
+		console.log("mdr");
+		if (dot.getAttribute("data-slide") == currentSlide) {
+			
 		  dot.classList.add("dot_selected");
-  
 		} else {
-  
 		  dot.classList.remove("dot_selected");
-  
 		}
-  
-	  });
+	});
  }
 
 
