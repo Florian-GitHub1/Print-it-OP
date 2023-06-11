@@ -25,7 +25,6 @@ const bannerImg = document.querySelector('.banner-img');
 const bannerText = banner.querySelector("p");
 const dots = document.querySelectorAll(".dot");
 
-
 let currentSlide = 0;
 
 
@@ -33,7 +32,7 @@ let currentSlide = 0;
 function genererDots(id, active = false) {
 		const dotsElement = document.createElement("div");
 
-		dotsElement.setAttribute("data-slide", id);
+		dotsElement.setAttribute("id", currentSlide++);
 
 		dotsElement.classList.add('dot');
 		dotsElement.classList.add('dot_selected');
@@ -45,14 +44,20 @@ function genererDots(id, active = false) {
 slides.forEach(genererDots);
 
 
-  function updateActiveDot(){	
-		if (dots.getAttribute("data-slide") == currentSlide++) {
-			console.log("fonctionne")
-		  dots.classList.add("dot_selected");
-		} else {
-		  dots.classList.remove("dot_selected");
+const dotElem = document.getElementById(currentSlide);
+
+const dotsArray = Array.from(document.querySelectorAll('.dot'));
+
+
+function updateActiveDot(){
+	dotsArray.forEach((dots => {
+		if (dots.getAttribute("id") == currentSlide){
+			dots.classList.add("dot_selected")
+		}else{
+			dots.classList.remove("dot_selected")
 		}
-  }
+	}));
+}
 
 
 
@@ -60,13 +65,13 @@ slides.forEach(genererDots);
  	currentSlide = (currentSlide + 1) % slides.length; 
  	bannerImg.src = "./assets/images/slideshow/" + slides[currentSlide].image;
  	bannerText.innerHTML = slides[currentSlide].tagLine;
- 	updateActiveDot();
+	updateActiveDot()
  }
  function showPreviousSlide() {
  	currentSlide = (currentSlide - 1 + slides.length) % slides.length;
  	bannerImg.src = "./assets/images/slideshow/" + slides[currentSlide].image;
  	bannerText.innerHTML = slides[currentSlide].tagLine;
- 	updateActiveDot();
+	updateActiveDot()
  }
 
 
